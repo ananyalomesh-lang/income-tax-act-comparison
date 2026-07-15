@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Income-tax Act, 1961 vs 2025</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+  :root{
+    --paper:#F1EDE3;
+    --paper-deep:#E7E1D2;
+    --ink:#1E2749;
+    --ink-soft:#3C4568;
+    --gold:#B4842A;
+    --old:#8B4A3D;
+    --new:#2F6F5E;
+    --muted:#6b6656;
+    --line:#c9c2ac;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.5;
+  }
+  .wrap{max-width:980px;margin:0 auto;padding:0 32px 80px;}
+
+  /* HERO */
+  .hero{
+    padding:72px 32px 56px;
+    text-align:center;
+    background:
+      repeating-linear-gradient(90deg, rgba(30,39,73,0.03) 0px, rgba(30,39,73,0.03) 1px, transparent 1px, transparent 80px);
+    border-bottom:2px solid var(--ink);
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--gold);
+    font-weight:600;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-optical-sizing:auto;
+    font-weight:700;
+    font-size:clamp(34px,5vw,58px);
+    margin:14px 0 6px;
+    letter-spacing:-0.01em;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p.sub{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:20px;
+    color:var(--ink-soft);
+    margin:0 auto 28px;
+    max-width:640px;
+  }
+  .seal-row{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:20px;}
+  .seal{
+    border:1.5px solid var(--ink);
+    border-radius:50%;
+    width:118px;height:118px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-family:'JetBrains Mono',monospace;
+    position:relative;
+  }
+  .seal::before{
+    content:"";
+    position:absolute;inset:6px;
+    border:1px dashed var(--gold);
+    border-radius:50%;
+  }
+  .seal .num{font-size:22px;font-weight:700;color:var(--ink);}
+  .seal .lbl{font-size:9px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:center;padding:0 8px;}
+
+  h2.section-title{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:30px;
+    margin:64px 0 6px;
+    display:flex;align-items:baseline;gap:12px;
+  }
+  h2.section-title .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    color:var(--gold);
+    font-weight:600;
+    letter-spacing:.08em;
+  }
+  p.lede{color:var(--muted);font-size:15.5px;max-width:680px;margin:0 0 28px;}
+
+  /* TIMELINE BANNER */
+  .timeline{
+    display:flex;align-items:center;gap:0;
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    padding:22px 26px;
+    margin:20px 0 60px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    flex-wrap:wrap;
+    gap:14px;
+  }
+  .timeline .stop{display:flex;flex-direction:column;gap:4px;}
+  .timeline .stop b{font-family:'Fraunces',serif;font-size:16px;color:#fff;}
+  .timeline .arrow{color:var(--gold);font-size:20px;margin:0 8px;}
+
+  /* COMPARISON LEDGER */
+  .ledger{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    border:1.5px solid var(--ink);
+    border-radius:4px;
+    overflow:hidden;
+  }
+  .ledger .col{padding:22px 24px;}
+  .ledger .col.old{background:#F6EFE8;border-right:1.5px solid var(--ink);}
+  .ledger .col.new{background:#EDF3F0;}
+  .ledger .col h3{
+    font-family:'Fraunces',serif;font-size:19px;margin:0 0 4px;
+  }
+  .ledger .col.old h3{color:var(--old);}
+  .ledger .col.new h3{color:var(--new);}
+  .ledger .col .yr{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);margin-bottom:14px;display:block;}
+  .ledger ul{margin:0;padding-left:18px;font-size:14px;}
+  .ledger li{margin-bottom:8px;}
+
+  /* STAT GRID */
+  .stat-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--ink);
+    border:1px solid var(--ink);
+    margin-top:24px;
+  }
+  .stat{background:var(--paper);padding:20px 14px;text-align:center;}
+  .stat .from{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--old);text-decoration:line-through;}
+  .stat .to{font-family:'Fraunces',serif;font-weight:700;font-size:26px;color:var(--new);}
+  .stat .lbl{font-size:11.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
+
+  /* CARDS: WHAT CHANGED */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px;}
+  .card{
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:6px;
+    padding:20px 22px;
+    border-top:4px solid var(--gold);
+  }
+  .card h4{
+    font-family:'Fraunces',serif;font-size:17px;margin:0 0 8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .card h4 .n{
+    font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);
+    border:1px solid var(--gold);border-radius:3px;padding:1px 6px;
+  }
+  .card p{font-size:14px;color:var(--ink-soft);margin:0;}
+  .card .old-new{
+    display:flex;gap:8px;align-items:center;font-family:'JetBrains Mono',monospace;font-size:12px;margin-top:10px;
+  }
+  .card .old-new .o{color:var(--old);text-decoration:line-through;}
+  .card .old-new .a{color:var(--muted);}
+  .card .old-new .n2{color:var(--new);font-weight:600;}
+
+  /* UNCHANGED STRIP */
+  .unchanged{
+    margin-top:56px;
+    background:var(--paper-deep);
+    border:1.5px dashed var(--ink);
+    border-radius:6px;
+    padding:24px 28px;
+  }
+  .unchanged h3{font-family:'Fraunces',serif;font-size:20px;margin:0 0 12px;}
+  .unchanged ul{columns:2;column-gap:32px;padding-left:18px;font-size:14px;margin:0;}
+  .unchanged li{margin-bottom:8px;break-inside:avoid;}
+
+  /* IMPLICATIONS TABLE */
+  table.impl{width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;}
+  table.impl th{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;text-transform:uppercase;letter-spacing:.05em;
+    text-align:left;padding:10px 14px;background:var(--ink);color:var(--paper);
+  }
+  table.impl td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;}
+  table.impl tr:nth-child(even) td{background:#F8F5EE;}
+
+  /* TRANSITION NOTE */
+  .transition{
+    margin-top:56px;
+    display:flex;gap:20px;align-items:flex-start;
+    background:#fff;border:1px solid var(--line);border-radius:6px;padding:22px 24px;
+  }
+  .transition .icon{
+    flex-shrink:0;width:44px;height:44px;border-radius:50%;
+    background:var(--ink);color:var(--paper);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-weight:700;font-size:20px;
+  }
+  .transition p{margin:0;font-size:14.5px;color:var(--ink-soft);}
+  .transition b{color:var(--ink);}
+
+  footer{
+    margin-top:70px;padding-top:24px;border-top:1.5px solid var(--ink);
+    font-size:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+  }
+  .group-note{
+    text-align:center;font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--muted);
+    margin-top:10px;letter-spacing:.03em;
+  }
+
+  @media(max-width:640px){
+    .ledger{grid-template-columns:1fr;}
+    .ledger .col.old{border-right:none;border-bottom:1.5px solid var(--ink);}
+    .stat-grid{grid-template-columns:repeat(2,1fr);}
+    .cards{grid-template-columns:1fr;}
+    .unchanged ul{columns:1;}
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">Comparative Study &nbsp;·&nbsp; Direct Tax Law, India</div>
+  <h1>The Income-tax Act,<br><span>1961 → 2025</span></h1>
+  <p class="sub">Same tax, new architecture — what the recodification actually changes, and what it deliberately leaves untouched.</p>
+  <div class="seal-row">
+    <div class="seal"><span class="num">819</span><span class="lbl">Sections<br>ITA 1961</span></div>
+    <div class="seal"><span class="num">536</span><span class="lbl">Sections<br>ITA 2025</span></div>
+    <div class="seal"><span class="num">01.04</span><span class="lbl">Effective<br>2026</span></div>
+  </div>
+  <div class="group-note"> Ananya Lomesh- 2411413         Shristi Khess- 2411459</div>
+</div>
+
+<div class="wrap">
+
+  <h2 class="section-title">Two Statutes, One Timeline <span class="tag"></span></h2>
+  <p class="lede">The Income-tax Act, 1961 governed Indian direct taxation for over six decades. The Income-tax Act, 2025 does not replace its tax policy, it rebuilds the same policy in a cleaner shell.</p>
+  <div class="timeline">
+    <div class="stop"><b>13 Feb 2025</b>Income-tax Bill introduced in Lok Sabha</div>
+    <div class="arrow">→</div>
+    <div class="stop"><b>FY 2025–26 filings</b>Governed entirely by ITA 1961, as amended by Finance Act 2025</div>
+    <div class="arrow">→</div>
+    <div class="stop"><b>1 April 2026</b>ITA 1961 repealed · ITA 2025 comes into force</div>
+    <div class="arrow">→</div>
+    <div class="stop"><b>Tax Year 2026–27</b>First year fully under ITA 2025</div>
+  </div>
+
+  <h2 class="section-title">The Core Comparison <span class="tag"> </span></h2>
+  <p class="lede">Read side by side: the inherited structure of 1961 against the consolidated form of 2025.</p>
+  <div class="ledger">
+    <div class="col old">
+      <span class="yr">Enacted 1961 · in force till 31.03.2026</span>
+      <h3>Income-tax Act, 1961</h3>
+      <ul>
+        <li>819+ sections incl. alphabetical suffixes (80C, 194B, etc.)</li>
+        <li>Twin concept: <b>Previous Year</b> + <b>Assessment Year</b></li>
+        <li>TDS spread across 60+ sections (192 – 206CCA)</li>
+        <li>Deductions scattered across Ch. VI-A, Sec. 10(14), 24, etc.</li>
+        <li>4,000+ amendments across 65 Finance Acts, dense provisos</li>
+        <li>ITR-U (updated return) window: 24 months</li>
+      </ul>
+    </div>
+    <div class="col new">
+      <span class="yr">Enacted 2025 · in force from 01.04.2026</span>
+      <h3>Income-tax Act, 2025</h3>
+      <ul>
+        <li>536 sequentially numbered sections, 16 schedules</li>
+        <li>Single concept: <b>Tax Year</b> (1 Apr – 31 Mar)</li>
+        <li>TDS consolidated into Sec. 392 (salary), 393 (other), 394 (TCS)</li>
+        <li>Deductions regrouped into unified chapters &amp; tables</li>
+        <li>~1,200 provisos / 900 explanations absorbed or removed (~40% shorter)</li>
+        <li>ITR-U window extended to 48 months</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat"><span class="from">819</span><span class="to">536</span><span class="lbl">Sections</span></div>
+    <div class="stat"><span class="from">14</span><span class="to">16</span><span class="lbl">Schedules</span></div>
+    <div class="stat"><span class="from">511</span><span class="to">333</span><span class="lbl">IT Rules</span></div>
+    <div class="stat"><span class="from">399</span><span class="to">190</span><span class="lbl">Forms</span></div>
+  </div>
+
+  <h2 class="section-title">What Actually Changes <span class="tag"></span></h2>
+  <p class="lede">The changes are structural and terminological — not changes to the tax burden itself.</p>
+  <div class="cards">
+    <div class="card">
+      <h4><span class="n">01</span>Previous Year + AY → Tax Year</h4>
+      <p>The dual-year system that confused first-time filers is gone. One 12-month period is now used both for earning and assessing income.</p>
+      <div class="old-new"><span class="o">PY + AY</span><span class="a">→</span><span class="n2">Tax Year</span></div>
+    </div>
+    <div class="card">
+      <h4><span class="n">02</span>TDS/TCS consolidation</h4>
+      <p>Instead of hunting across 60+ sections, all TDS rates, thresholds and payment types sit in structured tables under three sections.</p>
+      <div class="old-new"><span class="o">Sec. 192–206CCA</span><span class="a">→</span><span class="n2">Sec. 392–394</span></div>
+    </div>
+    <div class="card">
+      <h4><span class="n">03</span>Deductions regrouped</h4>
+      <p>80C, 80D, 80G and similar deductions are retained in substance but renumbered and grouped by head of income for easier navigation.</p>
+      <div class="old-new"><span class="o">Ch. VI-A (80C…)</span><span class="a">→</span><span class="n2">Sec. 122–154</span></div>
+    </div>
+    <div class="card">
+      <h4><span class="n">04</span>Unified compliance forms</h4>
+      <p>Multiple audit and TDS return forms are streamlined into single numbered forms, reducing duplication in filing formats.</p>
+      <div class="old-new"><span class="o">Form 3CA/3CB/16/24Q</span><span class="a">→</span><span class="n2">Form 26 / 130 / 138</span></div>
+    </div>
+  </div>
+
+  <div class="unchanged">
+    <h3>What Stays Exactly the Same</h3>
+    <ul>
+      <li>Income tax slabs &amp; rates under old and new tax regimes</li>
+      <li>Sec. 87A rebate — zero tax up to ₹12 lakh (new regime)</li>
+      <li>Standard deduction of ₹75,000 for salaried taxpayers</li>
+      <li>Core charging principle: tax on total income of the year</li>
+      <li>Underlying deduction limits (80C, 80D ceilings, etc.)</li>
+      <li>Assessments and proceedings completed before 1 April 2026</li>
+    </ul>
+  </div>
+
+  <h2 class="section-title">Why It Matters <span class="tag"></span></h2>
+  <p class="lede">Implications differ by who is filing and when.</p>
+  <table class="impl">
+    <tr><th>Stakeholder</th><th>Implication</th></tr>
+    <tr><td><b>Salaried individuals</b></td><td>No change to tax owed; Form 16 and section references change only from Tax Year 2026–27 onward.</td></tr>
+    <tr><td><b>Businesses / deductors</b></td><td>Payroll and TDS software must be remapped to Sec. 392–394; rates and thresholds are unchanged.</td></tr>
+    <tr><td><b>Professionals / auditors</b></td><td>Must learn new form numbering (Form 26 replacing 3CA/3CB/3CD) and the old-to-new section mapping.</td></tr>
+    <tr><td><b>Students &amp; researchers</b></td><td>Need fluency in both frameworks during the transition years, since pre-2026 matters stay under the 1961 Act.</td></tr>
+    <tr><td><b>Policy view</b></td><td>Demonstrates that simplification of drafting can be pursued independently of changing tax policy.</td></tr>
+  </table>
+
+  <div class="transition">
+    <div class="icon">IMP</div>
+    <p><b>Transitional rule to remember:</b> Income earned up to 31 March 2026 (including FY 2025–26, filed in July 2026) is governed entirely by the Income-tax Act, 1961, as amended by the Finance Act, 2025. The Income-tax Act, 2025 applies only from Tax Year 2026–27 onward. Assessments and pending proceedings for earlier years continue undisturbed under transitional provisions.</p>
+  </div>
+
+  <footer>
+    <span>	Sources: Income Tax Department (incometax.gov.in) · Finance Act, 2025 · Official FAQs, "Objective and Scope of the New Act".</span>
+  </footer>
+
+</div>
+</body>
+</html>
